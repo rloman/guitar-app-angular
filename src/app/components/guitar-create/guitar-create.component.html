@@ -1,0 +1,7 @@
+  <h3> {{ guitar.type}} heeft priis {{ guitar.price }} </h3>
+  <br> <br>
+
+  Type: <input type="text" [(ngModel)]="this.guitar.type" /> <br />
+  Price: <input type="number" [(ngModel)]="this.guitar.price" />
+
+  <button (click)="save();">Save</button>
