@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Guitar } from 'src/app/domain/guitar';
+import { GuitarService } from 'src/app/services/guitar.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-guitar-create',
@@ -10,7 +12,9 @@ export class GuitarCreateComponent implements OnInit {
 
   guitar: Guitar;
 
-  constructor() { 
+  subscription: Subscription;
+
+  constructor(private guitarService: GuitarService) { 
 
   }
 
@@ -19,7 +23,9 @@ export class GuitarCreateComponent implements OnInit {
   }
 
   save() : void {
-    console.log(`About to save ${this.guitar.type} with price ${this.guitar.price}`);
+   this.subscription =  this.guitarService.save(this.guitar).subscribe(newGuitar => {
+     console.log(newGuitar.id+" is saved!!!");
+   });
   }
 
 }
